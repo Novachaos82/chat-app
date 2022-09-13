@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signOut,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { useState, useEffect } from "react";
@@ -26,6 +27,16 @@ export const login = (email, password) => {
 
 export const logout = () => {
   return signOut(auth);
+};
+
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const useAuth = () => {

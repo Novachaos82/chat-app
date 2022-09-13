@@ -1,7 +1,7 @@
 //import { collection, getDoc, getDocs } from "firebase/firestore";
 import { useRef, useState } from "react";
 import "./App.css";
-import { login, logout, useAuth, signup } from "./firebase";
+import { login, logout, useAuth, signup, signInWithGoogle } from "./firebase";
 //import { useRef } from "react";
 
 function App() {
@@ -75,6 +75,9 @@ function App() {
       >
         Log out
       </button>
+      <div>
+        <button onClick={signInWithGoogle}>Sign in with google</button>
+      </div>
     </div>
   );
 }
