@@ -1,3 +1,4 @@
+import AddFirestore from "./component/addFirestore";
 import Firestore from "./component/Firestore";
 import Login from "./component/login";
 
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <Login />
       <Firestore />
+      <AddFirestore />
     </div>
   );
 }
