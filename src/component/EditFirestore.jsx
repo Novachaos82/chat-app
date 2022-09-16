@@ -1,32 +1,40 @@
-import { collection, addDoc } from "firebase/firestore";
 import React from "react";
 import { useState } from "react";
+import { collection, updateDoc } from "firebase/firestore";
+import { doc } from "firebase/firestore";
 import { db } from "../firebase";
 
-function AddFirestore() {
+function EditFirestore() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
+  const [id, setID] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (name === "") {
+    if (name === "" || id === "") {
       return;
     }
-    const dataCollectionRef = collection(db, "users");
-    addDoc(dataCollectionRef, { name: name, age: Number(age) })
-      .then((response) => {
-        console.log(response);
+    //const dataCollectionRef = collection(db, "users");
+    const docRef = doc(db, "users", id);
+    updateDoc(docRef, { name, age })
+      .then((Response) => {
+        console.log(Response);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
       });
-    //alert(name);
-    console.log(name);
   };
   return (
     <div>
-      <div>Add Name</div>
+      <div>Edit Name</div>
       <form onSubmit={submitHandler}>
+        <label htmlFor="edit">Edit ID</label>
+        <input
+          id="edit"
+          type="text"
+          value={id}
+          onChange={(e) => setID(e.target.value)}
+        />
         <label htmlFor="name">Add name</label>
         <input
           id="name"
@@ -41,10 +49,10 @@ function AddFirestore() {
           value={age}
           onChange={(e) => setAge(e.target.value)}
         />
-        <button type="submit">Add name</button>
+        <button type="submit">Update</button>
       </form>
     </div>
   );
 }
 
-export default AddFirestore;
+export default EditFirestore;
