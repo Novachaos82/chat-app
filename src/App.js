@@ -1,8 +1,8 @@
-import AddFirestore from "./component/addFirestore";
+import AddMessage from "./component/AddMessage";
 import EditFirestore from "./component/EditFirestore";
 //import Firestore from "./component/Firestore";
 import Login from "./component/login";
-import RealtimeDatas from "./component/RealtimeDatas";
+import RealtimeDatas from "./component/FetchDatas";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
 import Logout from "./component/logout";
@@ -17,8 +17,8 @@ function App() {
         <>
           {" "}
           <RealtimeDatas />
-          <AddFirestore />
-          <EditFirestore />
+          <AddMessage />
+          {/*<EditFirestore />*/}
           <Logout />
         </>
       ) : (

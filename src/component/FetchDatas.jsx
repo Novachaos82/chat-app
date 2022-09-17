@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { collection, deleteDoc, onSnapshot, doc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db, useAuth } from "../firebase";
 import { useEffect } from "react";
 
 function RealtimeDatas() {
+  const currentUser = useAuth();
   const [data, setData] = useState([]);
 
   const deleteHandler = (id) => {
@@ -24,12 +25,28 @@ function RealtimeDatas() {
   console.log(data);
   return (
     <div>
+      <div className="flex justify-center items-center">
+        <img
+          className="w-8 h-8 rounded-full "
+          src={currentUser?.photoURL}
+          alt=""
+        />
+
+        <div>{currentUser?.displayName}</div>
+      </div>
       <ul>
         {data.map((datas) => {
           return (
             <div key={datas.id}>
-              <li>{datas.data.name}</li>
-              <li>{datas.data.age}</li>
+              <img
+                className="w-8 h-8 rounded-full "
+                src={currentUser?.photoURL}
+                alt=""
+              />
+
+              <div>{currentUser?.displayName}</div>
+              <li>{datas.data.message}</li>
+
               <button
                 className="button ml-5"
                 onClick={() => deleteHandler(datas.id)}

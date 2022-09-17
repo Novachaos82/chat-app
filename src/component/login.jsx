@@ -41,18 +41,9 @@ function Login() {
     }
   };
 
-  const handleLogout = async () => {
-    setLoading(true);
-    try {
-      await logout();
-    } catch {
-      alert("error");
-    }
-    setLoading(false);
-  };
   return (
     <div className="App">
-      <div>current user is {currentUser?.email}</div>
+      <div>current user is {currentUser?.photoURL}</div>
       <div>
         <input ref={emailRef} placeholder="Email"></input>
         <input ref={passwordRef} type="password" placeholder="password"></input>
@@ -68,13 +59,7 @@ function Login() {
       <button onClick={handleLogin} className="button">
         Login
       </button>
-      <button
-        disabled={loading || !currentUser}
-        onClick={handleLogout}
-        className="button"
-      >
-        Log out
-      </button>
+
       <div>
         <button onClick={signInWithGoogle}>Sign in with google</button>
       </div>
