@@ -43,7 +43,6 @@ function Login() {
 
   return (
     <div className="App">
-      <div>current user is {currentUser?.photoURL}</div>
       <div>
         <input ref={emailRef} placeholder="Email"></input>
         <input ref={passwordRef} type="password" placeholder="password"></input>

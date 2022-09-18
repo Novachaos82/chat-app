@@ -40,11 +40,11 @@ function RealtimeDatas() {
             <div key={datas.id}>
               <img
                 className="w-8 h-8 rounded-full "
-                src={currentUser?.photoURL}
+                src={datas.data.displayImage}
                 alt=""
               />
 
-              <div>{currentUser?.displayName}</div>
+              <div>{datas.data.displayName}</div>
               <li>{datas.data.message}</li>
 
               <button

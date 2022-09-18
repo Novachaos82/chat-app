@@ -1,5 +1,5 @@
 import AddMessage from "./component/AddMessage";
-import EditFirestore from "./component/EditFirestore";
+//import EditFirestore from "./component/EditFirestore";
 //import Firestore from "./component/Firestore";
 import Login from "./component/login";
 import RealtimeDatas from "./component/FetchDatas";
