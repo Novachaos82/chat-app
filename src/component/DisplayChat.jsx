@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { collection, deleteDoc, onSnapshot, doc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  onSnapshot,
+  doc,
+  query,
+  orderBy,
+} from "firebase/firestore";
 import { db, useAuth } from "../firebase";
 import { useEffect } from "react";
 
@@ -14,15 +21,22 @@ function RealtimeDatas() {
 
   useEffect(() => {
     const collectionRef = collection(db, "users");
-    const unsubscribe = onSnapshot(collectionRef, (snap) => {
-      setData(snap.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
-    });
+
+    const unsubscribe = onSnapshot(
+      query(collectionRef, orderBy("timestamp", "asc")),
+      (snap) => {
+        setData(snap.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
+      }
+    );
 
     return () => {
       unsubscribe();
     };
   }, []);
   console.log(data);
+  //data.map((items) => {
+  //  console.log(items.data.displayImage + " display url");
+  //});
   return (
     <div>
       <div className="flex justify-center items-center">

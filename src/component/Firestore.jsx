@@ -16,6 +16,7 @@ const Firestore = () => {
 
   const getData = () => {
     const dataCollectionRef = collection(db, "users");
+    dataCollectionRef.orderBy("timestamp", "asc");
     getDocs(dataCollectionRef)
       .then((response) => {
         console.log(response);

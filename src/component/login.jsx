@@ -1,5 +1,7 @@
 //import { collection, getDoc, getDocs } from "firebase/firestore";
+import { useEffect } from "react";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { login, logout, useAuth, signup, signInWithGoogle } from "../firebase";
 //import { useRef } from "react";
@@ -11,7 +13,7 @@ function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const currentUser = useAuth();
-
+  const navigate = useNavigate();
   //useEffect(() => {
   //  const getUsers = async () => {
   //    const data = await getDocs(userCollectionRef);
@@ -22,6 +24,12 @@ function Login() {
 
   //  getUsers();
   //}, []);
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/Chats");
+    }
+    console.log(currentUser + "curr user");
+  }, [currentUser, navigate]);
 
   const handleSignup = async () => {
     setLoading(true);
@@ -42,10 +50,19 @@ function Login() {
   };
 
   return (
-    <div className="App">
-      <div>
-        <input ref={emailRef} placeholder="Email"></input>
-        <input ref={passwordRef} type="password" placeholder="password"></input>
+    <div className="flex justify-center flex-col">
+      <div className="flex justify-center items-center flex-col  p-4">
+        <input
+          className="border border-black p-2"
+          ref={emailRef}
+          placeholder="Email"
+        ></input>
+        <input
+          className="border border-black p-2"
+          ref={passwordRef}
+          type="password"
+          placeholder="password"
+        ></input>
       </div>
 
       <button
