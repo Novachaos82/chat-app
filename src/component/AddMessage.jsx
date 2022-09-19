@@ -17,6 +17,7 @@ function AddMessage() {
       message: msg,
       displayName: currentUser.displayName,
       displayImage: currentUser.photoURL,
+      uid: currentUser.uid,
       timestamp: serverTimestamp(),
     })
       .then((response) => {

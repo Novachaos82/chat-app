@@ -33,10 +33,11 @@ function RealtimeDatas() {
       unsubscribe();
     };
   }, []);
+  //console.log(currentUser.uid);
   console.log(data);
-  //data.map((items) => {
-  //  console.log(items.data.displayImage + " display url");
-  //});
+  data.map((items) => {
+    console.log(items.data.uid + " display url");
+  });
   return (
     <div>
       <div className="flex justify-center items-center">
@@ -52,15 +53,45 @@ function RealtimeDatas() {
         {data.map((datas) => {
           return (
             <div key={datas.id}>
-              <img
+              {currentUser.uid === datas.data.uid ? (
+                <div className="flex flex-col items-center">
+                  <div className="flex ">
+                    <img
+                      className="w-8 h-8 rounded-full "
+                      src={datas.data.displayImage}
+                      alt=""
+                    />
+                    <div>you</div>
+                  </div>
+                  <li> {datas.data.message}</li>
+                </div>
+              ) : (
+                <div>
+                  <img
+                    className="w-8 h-8 rounded-full "
+                    src={datas.data.displayImage}
+                    alt=""
+                  />
+                  <div>{datas.data.displayName}</div>
+
+                  <div>
+                    <li> {datas.data.message}</li>
+                  </div>
+                </div>
+              )}
+              {/*<img
                 className="w-8 h-8 rounded-full "
                 src={datas.data.displayImage}
                 alt=""
-              />
-
-              <div>{datas.data.displayName}</div>
-              <li>{datas.data.message}</li>
-
+              />*/}
+              {/*<div>
+                {currentUser.uid === datas.data.uid ? (
+                  <div className="flex items-center justify-center">you</div>
+                ) : (
+                  datas.data.displayName
+                )}
+              </div>*/}
+              {/*<li> {datas.data.message}</li>*/}
               <button
                 className="button ml-5"
                 onClick={() => deleteHandler(datas.id)}
