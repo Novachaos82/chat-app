@@ -8,9 +8,7 @@ function ChatPage() {
   return (
     <div>
       <RealtimeDatas />
-      <AddMessage />
-
-      <Logout />
+      {/*<Logout />*/}
     </div>
   );
 }

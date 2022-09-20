@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { login, logout, useAuth, signup, signInWithGoogle } from "../firebase";
+import { FcGoogle } from "react-icons/fc";
 //import { useRef } from "react";
 
 function Login() {
@@ -50,34 +51,45 @@ function Login() {
   };
 
   return (
-    <div className="flex justify-center flex-col">
-      <div className="flex justify-center items-center flex-col  p-4">
-        <input
-          className="border border-black p-2"
-          ref={emailRef}
-          placeholder="Email"
-        ></input>
-        <input
-          className="border border-black p-2"
-          ref={passwordRef}
-          type="password"
-          placeholder="password"
-        ></input>
-      </div>
-
-      <button
-        disabled={loading || currentUser !== null}
-        onClick={handleSignup}
-        className="button"
+    <div className="flex justify-center flex-col items-center h-screen bg-slate-900">
+      <div
+        id="container"
+        className="flex flex-col bg-black items-center w-[30%] h-3/6 justify-center max-h-fit rounded-xl"
       >
-        Sign up
-      </button>
-      <button onClick={handleLogin} className="button">
-        Login
-      </button>
-
-      <div>
-        <button onClick={signInWithGoogle}>Sign in with google</button>
+        <div className="text-white items-center ">
+          <button
+            onClick={signInWithGoogle}
+            className="flex px-8 py-2  items-center border border-gray-800 rounded-xl mt-4 gap-6"
+          >
+            <FcGoogle size={22} />
+            <div>Sign in with google</div>
+          </button>
+        </div>
+        <div className="w-4/6 flex justify-between items-center m-4">
+          <div className="w-[40%] h-[2px] bg-gray-500"></div>
+          <div className="text-white font-semibold italic">Or</div>
+          <div className="w-[40%] h-[2px] bg-gray-500"></div>
+        </div>
+        <div className="flex justify-center items-center flex-col w-full text-center gap-2">
+          <input className="inputs" ref={emailRef} placeholder="Email"></input>
+          <input
+            className="inputs"
+            ref={passwordRef}
+            type="password"
+            placeholder="password"
+          ></input>
+        </div>
+        <div className="my-4 flex flex-col w-full items-center gap-4">
+          <button onClick={handleLogin} className="button">
+            Login
+          </button>
+        </div>
+        <div className="text-white italic mb-2  text-center w-2/6">
+          new user?{" "}
+          <button onClick={handleSignup} className="text-blue-300">
+            Signup
+          </button>
+        </div>
       </div>
     </div>
   );

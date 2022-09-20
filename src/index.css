@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .button {
-  @apply bg-black text-white p-3;
+  @apply bg-blue-600/80 text-white px-3 py-2 w-2/6 rounded-md font-semibold;
+}
+
+.inputs {
+  @apply border border-white/25 p-2 w-4/6 bg-black/80 rounded-md text-white outline-none;
 }

@@ -23,7 +23,7 @@ function Logout() {
     <button
       disabled={loading || !currentUser}
       onClick={handleLogout}
-      className="button"
+      className="bg-blue-600 text-white px-4  py-2 rounded-md"
     >
       Log out
     </button>
