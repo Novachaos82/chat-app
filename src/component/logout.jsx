@@ -2,7 +2,7 @@ import React from "react";
 import { logout } from "../firebase";
 import { useState } from "react";
 import { useAuth } from "../firebase";
-import { useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 function Logout() {
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ function Logout() {
     <button
       disabled={loading || !currentUser}
       onClick={handleLogout}
-      className="bg-blue-600 text-white px-4  py-2 rounded-md"
+      className="bg-blue-600 text-white px-4  py-2 rounded-md font-semibold"
     >
       Log out
     </button>
