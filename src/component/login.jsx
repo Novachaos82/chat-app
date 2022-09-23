@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 import { login, logout, useAuth, signup, signInWithGoogle } from "../firebase";
 import { FcGoogle } from "react-icons/fc";
+import { motion } from "framer-motion";
+import containerVariant from "./framerVariants/ContainerVariant";
 //import { useRef } from "react";
 
 function Login() {
@@ -52,9 +54,12 @@ function Login() {
 
   return (
     <div className="flex justify-center flex-col items-center h-screen bg-slate-900">
-      <div
+      <motion.div
         id="container"
         className="flex flex-col bg-black items-center w-[30%] h-3/6 justify-center max-h-fit rounded-xl"
+        variants={containerVariant}
+        initial="hidden"
+        animate="visible"
       >
         <div className="text-white items-center ">
           <button
@@ -79,7 +84,8 @@ function Login() {
             placeholder="password"
           ></input>
         </div>
-        <div className="my-4 flex flex-col w-full items-center gap-4">
+
+        <div className="my-4 flex flex-col w-full items-center gap-4 ">
           <button onClick={handleLogin} className="button">
             Login
           </button>
@@ -90,7 +96,10 @@ function Login() {
             Signup
           </button>
         </div>
-      </div>
+        {/*<div className="rounded-xl w-52 h-64 mx-auto  mt-10 bg-gradient-to-r p-[6px] from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]">
+          <div className="flex flex-col justify-between h-full bg-white text-white rounded-lg p-4"></div>
+        </div>*/}
+      </motion.div>
     </div>
   );
 }

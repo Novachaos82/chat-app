@@ -11,6 +11,9 @@ import { db, useAuth } from "../firebase";
 import { useEffect } from "react";
 import Logout from "./logout";
 import AddMessage from "./AddMessage";
+import { motion } from "framer-motion";
+import TextVariant from "./framerVariants/TopTextVariant";
+import ChatAppVariant from "./framerVariants/ChatTabVariant";
 
 function RealtimeDatas() {
   const currentUser = useAuth();
@@ -40,8 +43,13 @@ function RealtimeDatas() {
 
   return (
     <div className=" p-4  bg-gradient-to-tr from-[rgb(26,25,23)] to-[rgb(17,17,44)] min-h-screen">
-      <div className="flex flex-row justify-end gap-2  items-center text-white">
-        <div className="flex items-center gap-2">
+      <motion.div
+        className="flex flex-row justify-end gap-2  items-center text-white"
+        variants={TextVariant}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div className="flex items-center gap-2">
           <div className="font-bold text-sm ">Logged In as</div>
           <img
             className="w-8 h-8 rounded-full "
@@ -50,18 +58,21 @@ function RealtimeDatas() {
           />
 
           <div>{currentUser?.displayName}</div>
-        </div>
+        </motion.div>
         <div>
           <Logout />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="flex items-center justify-center w-full mt-4 mb-4 ">
-        <div
+      <div className="flex  justify-center w-full mt-4 mb-4 min-h-screen ">
+        <motion.div
           id="containerMsg"
-          className="w-3/6 bg-black text-white rounded-xl p-4  overflow-auto"
+          className="w-3/6 bg-black text-white rounded-xl p-4 overflow-auto h-fit"
+          variants={ChatAppVariant}
+          initial="hidden"
+          animate="visible"
         >
-          <ul>
+          <ul className="h-3/6">
             {data.map((datas) => {
               return (
                 <div key={datas.id}>
@@ -125,7 +136,7 @@ function RealtimeDatas() {
           <div className="bg-black">
             <AddMessage />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
