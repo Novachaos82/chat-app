@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { login, logout, useAuth, signup, signInWithGoogle } from "../firebase";
+import { login, useAuth, signInWithGoogle } from "../firebase";
 import { FcGoogle } from "react-icons/fc";
 import { motion } from "framer-motion";
-import containerVariant from "./framerVariants/ContainerVariant";
+import containerVariant from "../component/framerVariants/ContainerVariant";
+
 //import { useRef } from "react";
 
 function Login() {
@@ -37,7 +38,7 @@ function Login() {
   const handleSignup = async () => {
     setLoading(true);
     try {
-      await signup(emailRef.current.value, passwordRef.current.value);
+      navigate("/Register");
     } catch {
       alert("error");
     }

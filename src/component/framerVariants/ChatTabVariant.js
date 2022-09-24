@@ -2,15 +2,15 @@ let ChatAppVariant = {
   hidden: {
     y: 200,
     opacity: 0,
-    borderRadius: 500,
+    scale: 0.5,
   },
   visible: {
     opacity: 1,
     y: 0,
-    borderRadius: 20,
+    scale: 1,
     transition: {
       delay: 1.25,
-      duration: 1,
+      duration: 0.4,
     },
   },
 };

@@ -9,7 +9,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
 const app = initializeApp(firebaseConfig);
@@ -48,4 +48,20 @@ export const useAuth = () => {
     return unsub;
   }, []);
   return currentUser;
+};
+
+export const registerWithEmailAndPassword = async (name, email, password) => {
+  try {
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const user = res.user;
+    await addDoc(collection(db, "accounts"), {
+      uid: user.uid,
+      name,
+      authProvider: "local",
+      email,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
 };
