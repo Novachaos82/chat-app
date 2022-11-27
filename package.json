@@ -1,6 +1,5 @@
 {
-  "homepage": "https://novachaos82.github.io/chat-app",
-  "name": "chat-app",
+
   "version": "0.1.0",
   "private": true,
   "dependencies": {
